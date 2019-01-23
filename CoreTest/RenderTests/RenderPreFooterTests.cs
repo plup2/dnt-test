@@ -66,6 +66,8 @@ namespace CoreTest.RenderTests
             var result = sut.RenderPreFooter();
 
             result.ToString().Should().Be("{\"cdnEnv\":\"\",\"showPostContent\":false,\"showFeedback\":\"test feedback french url\",\"showShare\":true}");
+            //need to reset the culture back to english as that is what other tests expect it to be by default
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(Constants.ENGLISH_CULTURE);
         }
 
         [Theory, AutoNSubstituteData]
