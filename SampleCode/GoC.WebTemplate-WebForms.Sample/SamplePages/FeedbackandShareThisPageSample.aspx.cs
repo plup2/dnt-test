@@ -11,7 +11,8 @@ namespace GoC.WebTemplate.WebForm.Sample.SamplePages
             //Display the FeedbackLink
             WebTemplateMaster.WebTemplateCore.ShowFeedbackLink = true; //this could be set in the web.config, key = "GoC.WebTemplate.showFeedbackLink"
             WebTemplateMaster.WebTemplateCore.FeedbackLinkURL = "http://www.aircanada.com/en/customercare/customersolutions.html";
-                        
+            WebTemplateMaster.WebTemplateCore.FeedbackLinkUrlFr = "http://www.aircanada.com/fr/customercare/customersolutions.html"; //will be used if the CurrentUICulture is set to 'fr' / if not set, will assume FeedbackLinkURL is bilingual
+
             //Specify the Share This Page with Media sites.
             WebTemplateMaster.WebTemplateCore.ShowSharePageLink = true; //this could be set in the web.config, key = "GoC.WebTemplate.showSharePageLink"
 
