@@ -101,6 +101,7 @@ namespace GoC.WebTemplate.Components
             ShowPostContent = _configProxy.ShowPostContent;
             ShowFeedbackLink = _configProxy.ShowFeedbackLink;
             FeedbackLinkURL = _configProxy.FeedbackLinkurl;
+            FeedbackLinkUrlFr = _configProxy.FeedbackLinkUrlFr;
             ShowLanguageLink = _configProxy.ShowLanguageLink;
             ShowSharePageLink = _configProxy.ShowSharePageLink;
 
@@ -225,6 +226,13 @@ namespace GoC.WebTemplate.Components
         /// or programmatically
         /// </summary>
         public string FeedbackLinkURL { get; set; }
+
+        /// <summary>
+        /// URL to be used for the feedback link when in french culture
+        /// Set by application via web.config or programmatically
+        /// If it is empty will asume FeebackLinkurl is bilingual or also non-existant
+        /// </summary>
+        public string FeedbackLinkUrlFr { get; set; }
 
         /// <summary>
         /// URL to be used for the Privacy link in transactional mode

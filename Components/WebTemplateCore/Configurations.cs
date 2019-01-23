@@ -139,6 +139,17 @@ namespace GoC.WebTemplate.Components
             set { this["feedbackLinkUrl"] = value; }
         }
         /// <summary>
+         /// URL used to redirect users when they click the feedback link
+         /// This link is specific for french if the user was already in the french culture
+         /// If it is empty will asume FeebackLinkurl is bilingual or also non-existant
+         /// </summary>
+        [ConfigurationProperty("feedbackLinkUrlFr", IsRequired = false)]
+        public string FeedbackLinkUrlFr
+        {
+            get { return (string)this["feedbackLinkUrlFr"]; }
+            set { this["feedbackLinkUrlFr"] = value; }
+        }
+        /// <summary>
         /// ShowSearch
         /// </summary>
         [ConfigurationProperty("showSearch", DefaultValue = true, IsRequired = true)]

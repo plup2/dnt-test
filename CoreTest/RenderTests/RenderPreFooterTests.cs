@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Threading;
 using FluentAssertions;
 using GoC.WebTemplate.Components;
 using Xunit;
@@ -33,6 +35,37 @@ namespace CoreTest.RenderTests
             var result = sut.RenderPreFooter();
 
             result.ToString().Should().Be("{\"cdnEnv\":\"\",\"showPostContent\":false,\"showFeedback\":\"test feedback url\",\"showShare\":true}");
+        }
+
+        [Theory, AutoNSubstituteData]
+        public void RenderPrefooterWithFeebackLinkUrlFr(Core sut)
+        {
+            sut.DateModified = DateTime.MinValue;
+            sut.VersionIdentifier = "  ";
+            sut.ScreenIdentifier = null;
+
+            sut.ShowFeedbackLink = true;
+            sut.FeedbackLinkURL = "test feedback url";
+            sut.FeedbackLinkUrlFr = "test feedback french url";
+            var result = sut.RenderPreFooter();
+
+            result.ToString().Should().Be("{\"cdnEnv\":\"\",\"showPostContent\":false,\"showFeedback\":\"test feedback url\",\"showShare\":true}");
+        }
+
+        [Theory, AutoNSubstituteData]
+        public void RenderPrefooterWithFeebackLinkUrlFrInFrenchCulture(Core sut)
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(Constants.FRENCH_CULTURE);
+            sut.DateModified = DateTime.MinValue;
+            sut.VersionIdentifier = "  ";
+            sut.ScreenIdentifier = null;
+
+            sut.ShowFeedbackLink = true;
+            sut.FeedbackLinkURL = "test feedback url";
+            sut.FeedbackLinkUrlFr = "test feedback french url";
+            var result = sut.RenderPreFooter();
+
+            result.ToString().Should().Be("{\"cdnEnv\":\"\",\"showPostContent\":false,\"showFeedback\":\"test feedback french url\",\"showShare\":true}");
         }
 
         [Theory, AutoNSubstituteData]
