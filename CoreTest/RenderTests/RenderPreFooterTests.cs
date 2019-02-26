@@ -18,7 +18,7 @@ namespace CoreTest.RenderTests
             sut.VersionIdentifier = "1.2.3";
             sut.ScreenIdentifier = "Test ID";
             sut.ShowFeedbackLink = true;
-            sut.FeedbackLinkURL = "test feedback url";
+            sut.FeedbackLinkUrl = "test feedback url";
             var result = sut.RenderPreFooter();
 
             result.ToString().Should().Be("{\"cdnEnv\":\"\",\"versionIdentifier\":\"1.2.3\",\"dateModified\":\"2015-01-09\",\"showPostContent\":false,\"showFeedback\":\"test feedback url\",\"showShare\":true,\"screenIdentifier\":\"Test ID\"}");
@@ -31,7 +31,7 @@ namespace CoreTest.RenderTests
             sut.VersionIdentifier = "  ";
             sut.ScreenIdentifier = null;
             sut.ShowFeedbackLink = true;
-            sut.FeedbackLinkURL = "test feedback url";
+            sut.FeedbackLinkUrl = "test feedback url";
             var result = sut.RenderPreFooter();
 
             result.ToString().Should().Be("{\"cdnEnv\":\"\",\"showPostContent\":false,\"showFeedback\":\"test feedback url\",\"showShare\":true}");
@@ -45,7 +45,7 @@ namespace CoreTest.RenderTests
             sut.ScreenIdentifier = null;
 
             sut.ShowFeedbackLink = true;
-            sut.FeedbackLinkURL = "test feedback url";
+            sut.FeedbackLinkUrl = "test feedback url";
             sut.FeedbackLinkUrlFr = "test feedback french url";
             var result = sut.RenderPreFooter();
 
@@ -61,7 +61,7 @@ namespace CoreTest.RenderTests
             sut.ScreenIdentifier = null;
 
             sut.ShowFeedbackLink = true;
-            sut.FeedbackLinkURL = "test feedback url";
+            sut.FeedbackLinkUrl = "test feedback url";
             sut.FeedbackLinkUrlFr = "test feedback french url";
             var result = sut.RenderPreFooter();
 

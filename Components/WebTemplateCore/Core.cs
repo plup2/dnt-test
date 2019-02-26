@@ -100,7 +100,7 @@ namespace GoC.WebTemplate.Components
             //Set preFooter section options
             ShowPostContent = _configProxy.ShowPostContent;
             ShowFeedbackLink = _configProxy.ShowFeedbackLink;
-            FeedbackLinkURL = _configProxy.FeedbackLinkurl;
+            FeedbackLinkUrl = _configProxy.FeedbackLinkUrl;
             FeedbackLinkUrlFr = _configProxy.FeedbackLinkUrlFr;
             ShowLanguageLink = _configProxy.ShowLanguageLink;
             ShowSharePageLink = _configProxy.ShowSharePageLink;
@@ -225,7 +225,7 @@ namespace GoC.WebTemplate.Components
         /// Set by application via web.config
         /// or programmatically
         /// </summary>
-        public string FeedbackLinkURL { get; set; }
+        public string FeedbackLinkUrl { get; set; }
 
         /// <summary>
         /// URL to be used for the feedback link when in french culture

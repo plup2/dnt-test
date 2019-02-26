@@ -133,7 +133,7 @@ namespace GoC.WebTemplate.Components
         /// URL used to redirect users when they click the feedback link
         /// </summary>
         [ConfigurationProperty("feedbackLinkUrl", IsRequired = false)]
-        public string FeedbackLinkurl
+        public string FeedbackLinkUrl
         {
             get { return (string)this["feedbackLinkUrl"]; }
             set { this["feedbackLinkUrl"] = value; }

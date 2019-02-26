@@ -11,8 +11,8 @@
 <ul>
     <li>Set the key <code class="wb-prettify">"GoC.WebTemplate.ShowFeedbackLink"</code> in the web.config to "true".</li>
     <li>or set the property programmatically. <code class="wb-prettify">"this.WebTemplateCore.ShowFeedbackLink = true;"</code></li>
-    <li>If you wish to redirect the user to your own pages instead of the default canada.ca page, set the key <code class="wb-prettify">"FeedbackLinkURL"</code> in the web.config to the url of your page.</li>
-    <li>or set the property programmatically. <code class="wb-prettify">"this.WebTemplateCore.FeedbackLinkURL = [page];"</code></li>
+    <li>If you wish to redirect the user to your own pages instead of the default canada.ca page, set the key <code class="wb-prettify">"feedbackLinkUrl"</code> in the web.config to the url of your page.</li>
+    <li>or set the property programmatically. <code class="wb-prettify">"this.WebTemplateCore.FeedbackLinkUrl = [page];"</code></li>
 </ul>
 
 <h2>Share This Page Link</h2>
@@ -33,8 +33,8 @@
     <pre>        
             //Display the FeedbackLink
             WebTemplateCore.ShowFeedbackLink = true; //this could be set in the web.config, key = "GoC.WebTemplate.showFeedbackLink"
-            WebTemplateCore.FeedbackLinkURL = "http://www.aircanada.com/en/customercare/customersolutions.html";
-            WebTemplateCore.FeedbackLinkUrlFr = "http://www.aircanada.com/fr/customercare/customersolutions.html"; //will be used if the CurrentUICulture is set to 'fr' / if not set, will assume FeedbackLinkURL is bilingual
+            WebTemplateCore.FeedbackLinkUrl = "http://www.aircanada.com/en/customercare/customersolutions.html";
+            WebTemplateCore.FeedbackLinkUrlFr = "http://www.aircanada.com/fr/customercare/customersolutions.html"; //will be used if the CurrentUICulture is set to 'fr' / if not set, will assume FeedbackLinkUrl is bilingual
 
             ////Specify the Share This Page with Media sites.
             //WebTemplateCore.ShowSharePageLink = true; //this could be set in the web.config, key = "GoC.WebTemplate.showSharePageLink"

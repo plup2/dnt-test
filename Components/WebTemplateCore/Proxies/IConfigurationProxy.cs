@@ -47,7 +47,7 @@ namespace GoC.WebTemplate.Components.Proxies
         /// <summary>
         /// URL used to redirect users when they click the feedback link
         /// </summary>
-        string FeedbackLinkurl { get; }
+        string FeedbackLinkUrl { get; }
 
         /// <summary>
         /// URL used to redirect users when they click the feedback link
