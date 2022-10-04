@@ -31,7 +31,7 @@ jobs:
       
     - name: Restore dependencies
       # Note that is "nuget restore" and not "dotnet restore" (for now)
-      run: nuget restore GoC.WebTemplate.sln -NonInteractive -Verbosity detailed
+      run: nuget restore GoC.WebTemplate.sln -NonInteractive -Verbosity normal
 
     - name: Create SNK
       # Creates SNK file from repository variable (created key is not meant for deployment)
@@ -40,6 +40,16 @@ jobs:
 
     - name: Build Solution
       run: msbuild GoC.WebTemplate.sln /p:Configuration=Release
+
+    - name: Test Components
+      run: dotnet test Components.Tests --no-build --verbosity normal
+
+    - name: Test Components.Core
+      run: dotnet test Components.Core.Tests --no-build --verbosity normal
+
+    - name: Test Components.Framework
+      run: |
+        & packages\xunit.runner.console.2.4.1\tools\net461\xunit.console.exe Components.Framework.Tests\bin\Release\GoC.WebTemplate.Components.Framework.Tests.dll
 
 #    - name: Build
 #      run: dotnet build --no-restore
