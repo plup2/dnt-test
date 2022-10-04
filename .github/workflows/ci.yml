@@ -31,11 +31,14 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore GoC.WebTemplate.sln
 
+    - name: Create SNK
+      # Creates SNK file from repository variable (created key is not meant for deployment)
+      run: |
+        [IO.File]::WriteAllBytes("GoC.WebTemplate.snk", [System.Convert]::FromBase64String("${{ secrets.CI_SIGNING_KEY_SNK }}"))
+
     - name: Build Solution
       # Creates a throw-away SNK file before build (not meant for deployment)
-      run: |
-        sn -k GoC.WebTemplate.snk
-        msbuild GoC.WebTemplate.sln /p:Configuration=Release
+      run: msbuild GoC.WebTemplate.sln /p:Configuration=Release
 
 #    - name: Build
 #      run: dotnet build --no-restore
