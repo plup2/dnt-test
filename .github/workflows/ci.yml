@@ -27,10 +27,10 @@ jobs:
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1
       with:
-        nuget-version: '6.0.x'
+        nuget-version: '6.0.0'
       
     - name: Restore dependencies
-      run: dotnet restore GoC.WebTemplate.sln
+      run: dotnet restore GoC.WebTemplate.sln -NonInteractive -Verbosity detailed
 
     - name: Create SNK
       # Creates SNK file from repository variable (created key is not meant for deployment)
