@@ -32,7 +32,10 @@ jobs:
       run: dotnet restore GoC.WebTemplate.sln
 
     - name: Build Solution
-      run: msbuild GoC.WebTemplate.sln /p:Configuration=Release
+      # Creates a throw-away SNK file before build (not meant for deployment)
+      run: |
+        sn -k GoC.WebTemplate.snk
+        msbuild GoC.WebTemplate.sln /p:Configuration=Release
 
 #    - name: Build
 #      run: dotnet build --no-restore
