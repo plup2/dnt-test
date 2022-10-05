@@ -47,7 +47,7 @@ jobs:
       run: |
         echo "Setting version to [$DEPLOY_VERSION]"
       env:
-        DEPLOY_VERSION: ${{ input.deploy_version }}
+        DEPLOY_VERSION: ${{ inputs.deploy_version }}
 
 #     - name: Restore dependencies
 #       # Note that is "nuget restore" and not "dotnet restore" (for now)
