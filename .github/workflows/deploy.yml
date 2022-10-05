@@ -43,6 +43,14 @@ jobs:
       with:
         nuget-version: '6.0.x'
 
+    - name: Validate version
+      run: |
+        nuget install Nuget.Core -OutputDirectory .\packages.pipeline
+        Add-Type -Path .\packages.pipeline\NuGet.Core.2.14.0\lib\net40-Client\NuGet.Core.dll
+        [Nuget.SemanticVersion]::Parse("$DEPLOY_VERSION")
+      env:
+        DEPLOY_VERSION: ${{ inputs.deploy_version }}
+
     - name: Set versions
       run: |
         echo "Setting version to [$env:DEPLOY_VERSION]"
