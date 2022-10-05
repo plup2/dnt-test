@@ -54,7 +54,12 @@ jobs:
     - name: Set versions
       run: |
         echo "Setting version to [$env:DEPLOY_VERSION]"
-        .scripts\core-version.ps1 "$env:DEPLOY_VERSION" Components\Components.csproj 
+        .scripts\core-version.ps1 "$env:DEPLOY_VERSION" Components\Components.csproj
+        .scripts\core-version.ps1 "$env:DEPLOY_VERSION" Components.Core\Components.Core.csproj
+        .scripts\core-version.ps1 "$env:DEPLOY_VERSION" CoreMVC\CoreMVC.csproj
+        .scripts\fw-version.ps1 "$env:DEPLOY_VERSION" Components.Framework\Properties\AssemblyInfo.cs
+        .scripts\fw-version.ps1 "$env:DEPLOY_VERSION" WebForms\Properties\AssemblyInfo.cs
+        .scripts\fw-version.ps1 "$env:DEPLOY_VERSION" MVC\Properties\AssemblyInfo.cs
       env:
         DEPLOY_VERSION: ${{ inputs.deploy_version }}
 
