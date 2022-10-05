@@ -1,4 +1,6 @@
 name: DotNetTemplates-CI
+# Builds and test GoC.WebTemplate.sln solution
+# Requires secret variable CI_SIGNING_KEY_SNK variable which must be a base64 encoded byte array that will be used to generate the SNK file.
 
 on:
 #  push:
@@ -43,6 +45,7 @@ jobs:
         [IO.File]::WriteAllBytes("GoC.WebTemplate.snk", [System.Convert]::FromBase64String("${{ secrets.CI_SIGNING_KEY_SNK }}"))
 
     - name: Build Solution
+      #run: dotnet build --no-restore
       run: msbuild GoC.WebTemplate.sln /p:Configuration=Release
 
     - name: Test Components
@@ -54,8 +57,3 @@ jobs:
     - name: Test Components.Framework
       run: |
         & packages\xunit.runner.console.2.4.1\tools\net461\xunit.console.exe Components.Framework.Tests\bin\Release\GoC.WebTemplate.Components.Framework.Tests.dll
-
-#    - name: Build
-#      run: dotnet build --no-restore
-#    - name: Test
-#      run: dotnet test --no-build --verbosity normal
