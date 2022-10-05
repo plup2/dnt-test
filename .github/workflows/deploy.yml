@@ -23,6 +23,8 @@ jobs:
     #NOTE: windows-latest (VS2022 as of this writing) does NOT work as long as we target .NET Framework 4.6.1
     runs-on: windows-2019
 
+    environment: ${{ inputs.environment }}
+
     steps:
     - uses: actions/checkout@v3
 
