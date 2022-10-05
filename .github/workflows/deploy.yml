@@ -1,0 +1,73 @@
+name: DotNetTemplates-DEPLOY
+# Deploys DotNetTemplates components to Nuget.org
+# Requires environment nuget.org
+# Requires secret variable DEPLOY_SIGNING_KEY_SNK variable which must be a base64 encoded byte array that will be used to generate the SNK file.
+
+on:
+  workflow_dispatch:
+    inputs:
+      # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch
+      deploy_version:
+        description: 'Version to set for all components before build/deploy.'
+        required: true
+        type: string
+      environment:
+        description: 'Deployment target environment'
+        required: true
+        type: environment
+        default: 'nuget.org'
+
+jobs:
+  build:
+
+    #NOTE: windows-latest (VS2022 as of this writing) does NOT work as long as we target .NET Framework 4.6.1
+    runs-on: windows-2019
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: |
+          2.1.x
+          3.1.x
+          5.0.x
+          6.0.x
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1
+      with:
+        nuget-version: '6.0.x'
+
+    - name: Set versions
+      run: |
+        echo "Setting version to [$DEPLOY_VERSION]"
+      env:
+        DEPLOY_VERSION: ${{ input.deploy_version }}
+
+#     - name: Restore dependencies
+#       # Note that is "nuget restore" and not "dotnet restore" (for now)
+#       run: nuget restore GoC.WebTemplate.sln -NonInteractive -Verbosity normal
+
+#     - name: Create SNK
+#       # Creates SNK file from repository variable (created key is not meant for deployment)
+#       run: |
+#         [IO.File]::WriteAllBytes("GoC.WebTemplate.snk", [System.Convert]::FromBase64String("${{ secrets.CI_SIGNING_KEY_SNK }}"))
+
+#     - name: Build Solution
+#       #run: dotnet build --no-restore
+#       run: msbuild GoC.WebTemplate.sln /p:Configuration=Release
+
+#     - name: Test Components
+#       run: dotnet test Components.Tests --no-build --configuration Release --verbosity normal
+
+#     - name: Test Components.Core
+#       run: dotnet test Components.Core.Tests --no-build --configuration Release --verbosity normal
+
+#     - name: Test Components.Framework
+#       run: |
+#         & packages\xunit.runner.console.2.4.1\tools\net461\xunit.console.exe Components.Framework.Tests\bin\Release\GoC.WebTemplate.Components.Framework.Tests.dll
