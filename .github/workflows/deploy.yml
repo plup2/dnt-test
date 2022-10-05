@@ -45,7 +45,8 @@ jobs:
 
     - name: Set versions
       run: |
-        echo "Setting version to [$DEPLOY_VERSION]"
+        echo "Setting version to [$env:DEPLOY_VERSION]"
+        .scripts\core-version.ps1 "$env:DEPLOY_VERSION" Components\Components.csproj 
       env:
         DEPLOY_VERSION: ${{ inputs.deploy_version }}
 
