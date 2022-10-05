@@ -42,10 +42,10 @@ jobs:
       run: msbuild GoC.WebTemplate.sln /p:Configuration=Release
 
     - name: Test Components
-      run: dotnet test Components.Tests --verbosity normal
+      run: dotnet test Components.Tests --no-build --configuration Release --verbosity normal
 
     - name: Test Components.Core
-      run: dotnet test Components.Core.Tests --verbosity normal
+      run: dotnet test Components.Core.Tests --no-build --configuration Release --verbosity normal
 
     - name: Test Components.Framework
       run: |
