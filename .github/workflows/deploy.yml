@@ -167,3 +167,4 @@ jobs:
       env:
         DEPLOY_PROJECT: ${{ matrix.templateComponent }}
         DEPLOY_VERSION: ${{ inputs.deploy_version }}
+        NUGETORG_DEPLOY_APIKEY: ${{ secrets.NUGETORG_DEPLOY_APIKEY }}
