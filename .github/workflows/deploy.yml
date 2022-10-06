@@ -44,7 +44,15 @@ jobs:
       uses: NuGet/setup-nuget@v1
       with:
         nuget-version: '6.0.x'
-
+    - name: Nuget Cache
+      uses: actions/cache@v3
+      with:
+        path: ~/.nuget/packages
+        #key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.config', '**/*.csproj') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+      
     - name: Validate version
       run: |
         nuget install Nuget.Core -Version 2.14.0 -OutputDirectory .\packages.pipeline
